@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+
+    <title>Readme</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
+
+    <style>
+        .code {
+            box-sizing: border-box;
+            color: #c62828;
+            display: inline;
+            font-family: monospace, Verdana;
+            font-size: 15px;
+            font-weight: 400;
+            height: auto;
+            line-height: 22px;
+        }
+
+        .container { padding: 10px 20px; }
+
+        .required { color: #b71c1c; }
+
+        .no-required { color: #2e7d32; }
+
+        pre { margin: .5em 0; }
+
+        pre code { padding: 0 .5em !important; }
+    </style>
+</head>
+<body class="grey darken-4">
+
+<div class="container white">
+    <div class="row">
+        <div class="col s12">
+            <h4>Техническое задание</h4>
+        </div>
+
+        <div class="col s12">
+            <h5>0. Общее</h5>
+
+            <p>Нужно создать локальный git-репозиторий, в который требуется отдельными коммитами сохранять конечный результат выполнения каждого из заданий. То есть закончили выполнение задания - коммит. Порядок выполнения после первого пункта значения не имеет.</p>
+
+            <p>Ориентировочное время выполнения: 1-3 часа.</p>
+        </div>
+
+        <div class="col s12">
+            <h5>1. Инициализация</h5>
+
+            <p>Необходимо создать пустой файл с именем <span class="code">.foo</span> в папке с локальным репозиторием.</p>
+        </div>
+
+        <div class="col s12">
+            <h5>2. Верстка email-письма</h5>
+
+            <p>Необходимо из макета сверстать письмо для email-рассылки.</p>
+            <p>Основное требование: письмо должно корректно отображаться в ПО Microsoft Outlook.</p>
+            <p>PixelPerfect не требуется.</p>
+            <p>Макет находится в папке <span class="code">2-Email</span>.</p>
+        </div>
+
+        <div class="col s12">
+            <h5>3. Позиционирование элементов</h5>
+
+            <p>Выполнив некоторые действия, блоки должны оказаться поверх родительских и соответствовать цветам.</p>
+            <p>Исходник находится в папке <span class="code">3-Positioning</span>.</p>
+        </div>
+
+        <div class="col s12">
+            <h5>4. AJAX-запрос</h5>
+
+            <p>
+                На доменное имя <span class="code">api-tz.avangard.local</span>, расположенное по адресу
+                <span class="code">213.172.24.35</span>, отправить post-запрос, передав следующие данные:
+            </p>
+
+            <div class="row">
+                <div class="col s12 m8 offset-m2">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>field</th>
+                            <th>required</th>
+                            <th>comment</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>foo</td>
+                            <td class="required">yes</td>
+                            <td>дата в любом формате</td>
+                        </tr>
+                        <tr>
+                            <td>bar</td>
+                            <td class="required">yes</td>
+                            <td>строка</td>
+                        </tr>
+                        <tr>
+                            <td>baz</td>
+                            <td class="no-required">no</td>
+                            <td>строка длиной от 1 до 255 символов</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p>POST-запрос нужно отправить по адресу <span class="code">http://api-tz.avangard.local/api/test</span></p>
+            <p>В случае успеха либо ошибки вывести полученную информацию на экран.</p>
+            <p>Результат нужно получить в двух видах: с использованием jQuery и с использованием любого JS-фреймворка.</p>
+
+            <p>Пример успешного ответа:</p>
+
+            <pre><code class="json">
+[
+    {"foo": "2003-01-12 17:38:52", "bar": "Senger-Howe"},
+    {"foo": "1993-07-02 05:46:35", "bar": "Beahan PLC"},
+    {"foo": "1985-04-16 17:23:10", "bar": "Sauer Ltd"},
+    {"foo": "1992-09-02 18:27:01", "bar": "Dibbert Group"}
+]
+            </code></pre>
+
+            <p>Примеры ошибок:</p>
+
+            <pre><code class="json">
+{
+    "error": {
+        "code": 405,
+        "msg": "Method Not Allowed"
+    }
+}
+            </code></pre>
+
+            <pre><code class="json">
+{
+    "error": {
+        "code": 400,
+        "msg": [
+            "The foo is not a valid date.",
+            "The bar must be an string."
+        ]
+    }
+}
+            </code></pre>
+        </div>
+
+        <div class="col s12">
+            <h5>5. Javascript</h5>
+
+            <p>На вход подается неассоциативный массив строк из N-элементов.</p>
+            <p>Задача: средствами javascript vanilla создать общий элемент, внутрь которого нужно добавить все элементы массива, расположенные в своем контейнере.</p>
+
+            <p>Пример результата:</p>
+            <pre><code class="html">
+&lt;div>
+    &lt;p>foo&lt;/p>
+    &lt;p>bar&lt;/p>
+    &lt;p>baz&lt;/p>
+&lt;/div>
+            </code></pre>
+
+            <p>Сделать то же самое используя библиотеку jQuery.</p>
+        </div>
+
+        <div class="col s12">
+            <h5>6. Дополнительное задание</h5>
+
+            <p>Провести код-ревью.</p>
+            <p>Исходники находятся в папке <span class="code">6-Additional</span>.</p>
+        </div>
+
+        <div class="col s12">
+            <h5>7. Завершающий этап</h5>
+
+            <p>
+                По окончании выполнения заданий, необходимо упаковать папку локального репозитория в архив (rar/zip/7z/gzip/tar - значения не имеет) с именем архива
+                <span class="code">55a8fb4000055dafbe000881de64574f6b3344</span> и отправить на адрес
+                <span class="code">andrey.feoktistov@avangard-mb.ru</span>, упомянув в теме письма слово <span class="code">резюме</span>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/html.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/json.min.js"></script>
+
+<script>
+    hljs.initHighlighting();
+</script>
+</body>
+</html>
